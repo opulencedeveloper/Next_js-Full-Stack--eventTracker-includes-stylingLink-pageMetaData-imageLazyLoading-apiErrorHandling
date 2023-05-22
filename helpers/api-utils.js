@@ -1,5 +1,4 @@
 export async function getAllEvents() {
-  //Error handling was not done here
   const response = await fetch(
     "https://react-http-2407b-default-rtdb.firebaseio.com/events.json"
   );
@@ -38,7 +37,6 @@ export async function getFilteredEvents(dateFilter) {
 
   let filteredEvents = allEvents.filter((event) => {
     const eventDate = new Date(event.date);
-    //we minus 1 because the Date object expect the month to begin at 0
     return eventDate.getFullYear() === year && eventDate.getMonth() === month - 1;
   });
 

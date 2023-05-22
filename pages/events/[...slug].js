@@ -1,5 +1,3 @@
-//this page only catched more than 1 dynamic path
-
 import EventList from "@/components/events/event-list";
 import ResultsTitle from "@/components/events/results-title";
 import Button from "@/components/ui/button";
@@ -20,7 +18,6 @@ const FilteredEventsPage = (props) => {
 
   const url =
     "https://react-http-c9790-default-rtdb.firebaseio.com/events.json";
-  //package for easy http request
   const { data, error } = useSWR(url, fetcher);
   console.log(data);
 
@@ -42,7 +39,6 @@ const FilteredEventsPage = (props) => {
   let pageHeadData = (
     <Head>
       <title>Filtred Events</title>
-      {/* the meta shows up in Google Search Results */}
       <meta name="description" content={`All events of filtered events.`} />
     </Head>
   );
@@ -56,7 +52,6 @@ const FilteredEventsPage = (props) => {
     );
   }
 
-  //extracting the value of more than 1 dynamic path
   const filteredYear = filterData[0];
   const filteredMonth = filterData[1];
 
@@ -66,7 +61,6 @@ const FilteredEventsPage = (props) => {
   pageHeadData = (
     <Head>
       <title>Filtred Events</title>
-      {/* the meta shows up in Google Search Results */}
       <meta
         name="description"
         content={`All events for ${numMonth}/${numYear}`}
@@ -74,7 +68,6 @@ const FilteredEventsPage = (props) => {
     </Head>
   );
 
-  //if someone enters 'abc' or any string that cannot be converted to a number to the url, it is checked in getServerSideprops below
   if (
     isNaN(numYear) ||
     isNaN(numMonth) ||
@@ -99,7 +92,6 @@ const FilteredEventsPage = (props) => {
 
   const filteredEvents = loadedEvents.filter((event) => {
     const eventDate = new Date(event.date);
-    //we minus 1 because the Date object expect the month to begin at 0
     return (
       eventDate.getFullYear() === numYear &&
       eventDate.getMonth() === numMonth - 1
@@ -120,7 +112,6 @@ const FilteredEventsPage = (props) => {
     );
   }
 
-  //we minus 1 because the Date object expect the month to begin at 0
   const date = new Date(numYear, numMonth - 1);
 
   return (

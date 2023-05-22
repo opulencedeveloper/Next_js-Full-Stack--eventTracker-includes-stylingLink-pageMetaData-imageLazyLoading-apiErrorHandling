@@ -28,7 +28,6 @@ function NewsletterRegistration() {
         }
 
         return response.json().then(data => {
-          //we throw an error here, for the catch block to catch it
           throw new Error(data.message || 'Something went wrong');
         });
       })

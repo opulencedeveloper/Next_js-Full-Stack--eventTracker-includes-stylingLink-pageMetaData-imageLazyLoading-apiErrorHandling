@@ -18,12 +18,6 @@ export async function insertDocument(client, collection, document) {
 
 export async function getAllDocuments(client, collection, sort, filter = {}) {
   const db = client.db("events");
-
-  //find() fetches all the data from the collection
-  //sort(), -1 means youre sorting in a descending manner, +1 means ascending
-  //we did this to fetch the latest comment in the collection, since we are fetching it from the button
-  //toArray() converts the data to an array
-  //The filter = {} parameter allows us to set a filter for finding 1 document. The default (an empty object: {}) ensures that NO filter is applied (i.e. we get ALL documents).
   
   const documents = await db
     .collection(collection)

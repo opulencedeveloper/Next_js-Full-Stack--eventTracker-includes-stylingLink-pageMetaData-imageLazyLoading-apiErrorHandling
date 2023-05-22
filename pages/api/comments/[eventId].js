@@ -42,7 +42,6 @@ async function handler(req, res) {
 
     try {
       result = await insertDocument(client, "comments", newComment);
-      //we are including the id given to us by mongoDb
       newComment._id = result.insertedId;
 
       res.status(201).json({ message: "Added comment. ", comment: newComment });
@@ -53,7 +52,6 @@ async function handler(req, res) {
 
   if (req.method === "GET") {
     try {
-      //I explained what '_id: -1' and { eventId: eventId } means where I defined the getAllDocunents fn
       const documents = await getAllDocuments(client, "comments", { _id: -1 },  { eventId: eventId });
       res.status(200).json({ comments: documents });
     } catch (error) {
